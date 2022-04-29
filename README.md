@@ -160,3 +160,24 @@ note : '/' is the url
 ```
 php artisan make:controller ProductController
 ```
+
+type on app\Http\Controllers\ProductController
+
+```
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Utilites;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+
+class ProductController extends Controller
+{
+    public function getIndex()
+    {
+        $products = Product::all();
+        return view('shop.index', ['products' => $products]);
+    }
+}
+```
