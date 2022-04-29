@@ -13,7 +13,7 @@ note : Product is name of page
 
 #2. Create Schema for input table Product on Mysql
 
-app/database/migrations/...create_product_table
+app/database/migrations/...create_product_table.php
 
 ```
 <?php
@@ -62,7 +62,7 @@ php artisan make:seed ProductTableSeeder
 ```
 
 Create Array
-app/Product
+app/Product.php
 
 ```
 <?php
@@ -104,4 +104,59 @@ class UtilitesTableSeeder extends Seeder
     }
 }
 
+```
+
+#4. Call ProductTableSeeder
+on app/database/seeds/DatabaseSeeder.php
+```
+<?php
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $this->call(ProductTableSeeder::class);
+    }
+}
+```
+
+on terminal run
+```
+php artisan migrate
+```
+then
+```
+php artisan db:seed
+```
+
+
+## Outputing Product Data
+
+###1. Set Place of view on route
+
+app/Http/routes.php
+
+```
+<?php
+
+Route::get('/', function () {
+    return view('shop.index');
+});
+```
+
+note : '/' is the url
+
+###2. Delete Auth folder on app/Http/Controllers/Auth
+
+###3. Make a Product Controller On terminal run
+
+```
+php artisan make:controller ProductController
 ```
