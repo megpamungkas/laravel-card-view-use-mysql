@@ -1,9 +1,9 @@
-### step-by-step-laravel-card-view-use-mysql
+# step-by-step-laravel-card-view-use-mysql
 step by step laravel card view use mysql
 
 ## Data Migrations & Seeding
 
-# 1. make migration file
+### 1. make migration file
 on terminal
 ```
 php artisan make:model Product -m
