@@ -181,3 +181,47 @@ class ProductController extends Controller
     }
 }
 ```
+
+### 4. Show Database into card view
+type on resources\views\shop\index.blade.php
+
+```
+@extends('layouts.master')
+
+@section('title')
+	Ngetrip
+@endsection
+
+@section('content')
+    @if(Session::has('success'))
+    <div class="row">
+        <div class="col-sm6 col-md-4 col-md-offset-4 col-md-offset-3">
+            <div id="charge-message" class="alert alert-success">
+                {{ Session::get('success') }}
+            </div>
+        </div>
+    </div>
+    @endif
+    @foreach($products->chunk(3) as $productChunk)
+      <div class="row">
+        @foreach($productChunk as $product)
+        <div class="col-sm6 col-md-4 card">
+        <img class="card-img-top" src="{{ $product->imagePath }}" alt="Card image cap"  class="img-responsive">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <h3>{{ $product->title }}</h3>
+          <p class="card-text text-secondary">{{ $product->description }}</p>
+          <div class="clearfix">
+            <div class="price pull-left font-weight-bold">Rp {{ $product->price }}</div>
+            <a href="{{ route('product.addToCart', ['id' => $product->id])}}" class="btn btn-primary pull-right">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+        @endforeach
+      
+    </div>
+    @endforeach
+
+@endsection
+```
+
