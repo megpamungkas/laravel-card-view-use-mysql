@@ -11,7 +11,7 @@ php artisan make:model Product -m
 note : Product is name of page
 
 
-# 2. Create Schema for input table Product on Mysql
+### 2. Create Schema for input table Product on Mysql
 
 app/database/migrations/...create_product_table.php
 
@@ -54,7 +54,7 @@ class CreateUtilitesTable extends Migration
 ```
 
 
-# 3.Create Data Seeder
+### 3.Create Data Seeder
 
 on terminal
 ```
@@ -106,7 +106,7 @@ class UtilitesTableSeeder extends Seeder
 
 ```
 
-# 4. Call ProductTableSeeder
+### 4. Call ProductTableSeeder
 on app/database/seeds/DatabaseSeeder.php
 ```
 <?php
@@ -137,7 +137,7 @@ php artisan db:seed
 ```
 
 
-## Outputing Product Data
+# Outputing Product Data
 
 ### 1. Set Place of view on route
 
