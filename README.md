@@ -153,7 +153,8 @@ Route::get('/', function () {
 
 note : '/' is the url
 
-### 2. Delete Auth folder on app/Http/Controllers/Auth
+### 2. Delete Auth folder
+on app/Http/Controllers/Auth
 
 ### 3. Make a Product Controller On terminal run
 
