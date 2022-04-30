@@ -226,3 +226,24 @@ type on resources\views\shop\index.blade.php
 @endsection
 ```
 
+
+# user-management-laravel-shop-part-3
+user-management-laravel-shop-part-3
+
+### 1. Create token at users
+```
+$table->rememberToken();
+```
+
+tun on terminal
+```
+php artisan migrate:reset
+```
+```
+php artisan migrate
+```
+```
+php artisan db:seed
+```
+
+
