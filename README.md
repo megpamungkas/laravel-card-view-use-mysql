@@ -247,3 +247,93 @@ php artisan db:seed
 ```
 
 
+# input-data-product-to-cart-laravel-shop-part-4
+step by step to input data product to cart laravel
+
+
+## Cart Model & Session Storage
+
+- set the session
+
+Look on config/session.php 
+
+```
+'driver' => env('SESSION_DRIVER', 'file'),
+```
+then set to .env
+```
+SESSION_DRIVER=file
+```
+and delete files on storage\framework\sessions
+(the name file like this 1d08f3dc878e6fe7d7df46e87f661764b8259095)
+
+
+
+### 1. Set the route
+type on app/Http/routes.php
+```
+Route::get('/add-to-cart/{id}'), [
+    'uses' => 'ProductController@getAddToCart',
+    'as' => 'product.addToCart'
+]);
+```
+### 2. Create Cart
+```
+<?php
+
+namespace App;
+
+class Cart
+{
+	public $items = null;
+	public $totalQty = 0;
+	public $totalPrice = 0;
+
+	public function __construct($oldCart)
+	{
+		if ($oldCart) {
+			$this->items = $oldCart->items;
+			$this->totalQty = $oldCart->totalQty;
+			$this->totalPrice = $oldCart->totalPrice;
+		}
+	}
+
+	public function add($item, $id) {
+		$storedItem = ['qty' => 0, 'price' => $item->price, 'item' => $item];
+		if ($this->items) {
+			if (array_key_exists($id, $this->items)) {
+				$storedItem = $this->items [$id];
+			}
+		}
+		$storedItem['qty']++;
+		$storedItem['price'] = $item->price * $storedItem['qty'];
+		$this->items[$id] = $storedItem;
+		$this->totalQty++;
+		$this->totalPrice += $item->price; 
+	}
+}
+```
+### 3. Add The Product Function
+type on app/Http/Controllers/ProductController.php
+```
+public function getAddToCart(Request $request, $id) {
+		$product = Product::find($id);
+		$oldCart = Session::has('cart') ? Session::get('cart') : null;
+		$cart = new Cart($oldCart);
+		$cart->add($product, $product->id);
+
+		$request->session()->put('cart', $cart);
+		
+		return redirect()->route('product.index');
+	}
+```
+And Add
+```
+use App\Cart;
+use Session;
+```
+###. Add code to button for view cart which data product was added to cart
+```
+  <a href="{{ route('product.addToCart', ['id' => $product->id])}}" class="btn btn-primary pull-right">Go somewhere</a>
+```
+
