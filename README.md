@@ -337,3 +337,6 @@ use Session;
   <a href="{{ route('product.addToCart', ['id' => $product->id])}}" class="btn btn-primary pull-right">Go somewhere</a>
 ```
 
+
+# Showing-Cart-views-which-inputed-laravel-shop-part-5
+step by step Showing Cart views which inputed laravel shop part 5
