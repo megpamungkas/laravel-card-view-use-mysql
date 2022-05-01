@@ -343,8 +343,17 @@ use Session;
 ```
 
 ### Link to show the cart page
+```
 <a href="{{ route('product.shoppingCart') }}">
+```
 
+### Set the route
+```
+Route::get('/shopping-cart, [
+	'uses' => 'ProductController@getCart',
+	'as' => 'product.shoppingCart'
+]);
+```
 
 # Showing-Cart-views-which-inputed-laravel-shop-part-5
 step by step Showing Cart views which inputed laravel shop part 5
