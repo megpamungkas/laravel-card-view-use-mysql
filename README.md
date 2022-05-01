@@ -332,10 +332,18 @@ And Add
 use App\Cart;
 use Session;
 ```
-###. Add code to button for view cart which data product was added to cart
+### Add code to button for view cart which data product was added to cart
 ```
   <a href="{{ route('product.addToCart', ['id' => $product->id])}}" class="btn btn-primary pull-right">Go somewhere</a>
 ```
+
+### Show the number of cart
+```
+<span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty:'' }}</span>
+```
+
+### Link to show the cart page
+<a href="{{ route('product.shoppingCart') }}">
 
 
 # Showing-Cart-views-which-inputed-laravel-shop-part-5
