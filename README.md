@@ -1,4 +1,4 @@
-# step-by-step-laravel-card-view-use-mysql
+# laravel-card-view-use-mysql
 step by step laravel card view use mysql
 
 ## Data Migrations & Seeding
@@ -357,3 +357,16 @@ Route::get('/shopping-cart, [
 
 # Showing-Cart-views-which-inputed-laravel-shop-part-5
 step by step Showing Cart views which inputed laravel shop part 5
+
+type on app\Http\Controllers\ProductController.php
+```
+public function getCart() {
+		if (!Session::has('cart')) {
+			return view('shop.shopping-cart');
+		}
+		$oldCart = Session::get('cart');
+		$cart = new Cart($oldCart);
+		return view('shop.shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+	}
+```
+
