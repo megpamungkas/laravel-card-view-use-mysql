@@ -339,6 +339,8 @@ use Session;
 ```
 
 ### Show the number of cart
+
+on \resources\views\partials\header.blade.php
 ```
 <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty:'' }}</span>
 ```
