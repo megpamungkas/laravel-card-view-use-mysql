@@ -278,6 +278,7 @@ Route::get('/add-to-cart/{id}'), [
 ]);
 ```
 ### 2. Create Cart
+Creat Cart interaction on \app\cart.php
 ```
 <?php
 
